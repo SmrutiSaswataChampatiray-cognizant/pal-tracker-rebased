@@ -7,14 +7,6 @@ plugins {
 repositories {
     mavenCentral()
 }
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-}
 bootRun.environment([
         "WELCOME_MESSAGE": "hello",
 ])
@@ -22,6 +14,16 @@ bootRun.environment([
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
 ])
+
+dependencies {
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+
+}
+
 test {
     useJUnitPlatform()
 }
