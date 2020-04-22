@@ -1,17 +1,27 @@
 package io.pivotal.pal.tracker;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 
 public class InMemoryTimeEntryRepository implements TimeEntryRepository {
 
+    TimeEntry timeEntry;
+
     @Override
     public TimeEntry create(TimeEntry timeEntry) {
-        return null;
+        this.timeEntry = timeEntry;
+        return timeEntry;
     }
 
     @Override
     public TimeEntry find(Long timeEntryId) {
-        return null;
+        if (timeEntry.getId() != timeEntryId) {
+            return timeEntry;
+        } else {
+            return null;
+        }
     }
 
     @Override
